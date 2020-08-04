@@ -27,16 +27,17 @@ SOFTWARE.
 const { GetResolutionList, GetCurrentResolution } = require('bindings')('resolution.node');
 
 module.exports.list = () => {
+  
+  const min = {
+    width : 800,
+    height: 600
+  }; // Windows 10 min display resolution (requirement)
+  
+  let list = [];
+  
+  // Remove duplicate and garbage
+  for(let i of GetResolutionList()) if (i.width >= min.width && i.height >= min.height && !list.some(j => j.width === i.width && j.height === i.height)) list.push(i); 
 
-  let list = [], previous = {};
-  
-  // Remove duplicate
-  for(let current of GetResolutionList()) 
-  {
-    if ( current.width != previous.width && current.height != previous.height) list.push(current); 
-    previous = current;
-  }
-  
   // Sort by highest first  
   return list.sort((a,b) => ( b.width - a.width == 0 ) ? b.height - a.height : b.width - a.width );
 

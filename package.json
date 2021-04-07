@@ -1,12 +1,12 @@
 {
   "name": "win-screen-resolution",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Get the current and all available screen resolution on Windows",
   "type": "module",
-  "main": "index.cjs",
+  "main": "./lib/index.cjs",
   "exports": {
-    "import": "./esm.mjs",
-    "require": "./index.cjs"
+    "import": "./lib/esm.mjs",
+    "require": "./lib/index.cjs"
   },
   "os": [
     "win32"

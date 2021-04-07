@@ -4,8 +4,8 @@
         "cflags!": [ "-fno-exceptions" ],
         "cflags_cc!": [ "-fno-exceptions" ],
         "sources": [
-            "src/resolution.cpp",
-            "src/Videomod.cpp"
+            "lib/src/resolution.cpp",
+            "lib/src/Videomod.cpp"
         ],
         "msvs_settings": {
           "VCCLCompilerTool": {

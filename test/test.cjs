@@ -1,6 +1,6 @@
 "use strict";
 
-const resolution = require("../index.cjs");
+const resolution = require("../lib/index.cjs");
 
 const current = resolution.current();
 console.log(`Current screen resolution is ${current.width}x${current.height}`);

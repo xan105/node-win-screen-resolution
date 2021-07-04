@@ -41,11 +41,11 @@
   },
   "homepage": "https://github.com/xan105/node-win-screen-resolution#readme",
   "devDependencies": {
-    "eslint": "^7.6.0",
-    "node-gyp": "^6.1.0"
+    "eslint": "^7.30.0",
+    "node-gyp": "^8.1.0"
   },
   "dependencies": {
     "bindings": "^1.5.0",
-    "node-addon-api": "^2.0.0"
+    "node-addon-api": "^4.0.0"
   }
 }

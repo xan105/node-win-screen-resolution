@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2020 Anthony Beaumont
+Copyright (c) 2020-2021 Anthony Beaumont
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@ You will also need to have afxtempl.h in your precompiled header. */
 
 #include "stdafx.h"
 #include "videomod.h"
-#include "winuser.h"
+#include "DpiAwareness.h"
 #pragma comment(lib, "user32.lib")
 
 Napi::Array GetResolutionList(const Napi::CallbackInfo& info){
@@ -67,17 +67,8 @@ Napi::Object GetCurrentResolution(const Napi::CallbackInfo& info){
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
   
-  try{
-    /*
-    Windows 10
-    https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setthreaddpiawarenesscontext
-    */
-    SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_SYSTEM_AWARE);
-  }catch(...){
-    /* Vista onwards */
-    SetProcessDPIAware();
-  }
-
+  DpiAwareness();
+  
   exports.Set("GetResolutionList", Napi::Function::New(env, GetResolutionList));
   exports.Set("GetCurrentResolution", Napi::Function::New(env, GetCurrentResolution));
   return exports;

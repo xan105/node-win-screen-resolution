@@ -40,9 +40,9 @@ Installation
 
 `npm install win-screen-resolution`
 
-You will need C/C++ build tools and Python 2.7(node-gyp) to build this module.
+You will need C/C++ build tools and Python ~2.7~ 3.x(node-gyp) to build this module.
 
 Note
 ====
-
 Available screen resolution below 800x600 are ignored because of Windows 10 min display resolution requirement.
+HighDPI supported (DPI Aware).

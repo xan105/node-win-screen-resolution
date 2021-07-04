@@ -1,6 +1,6 @@
 {
   "name": "win-screen-resolution",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Get the current and all available screen resolution on Windows",
   "type": "module",
   "main": "./lib/index.cjs",
@@ -22,7 +22,8 @@
   "keywords": [
     "screen",
     "resolution",
-    "windows"
+    "windows",
+    "DPI"
   ],
   "author": {
     "name": "Anthony Beaumont",

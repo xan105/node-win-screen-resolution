@@ -26,9 +26,29 @@ SOFTWARE.
 You will also need to have afxtempl.h in your precompiled header. */
 #include "pch.h"
 #include "videomod.h"
-#include "dpiAwareness.h"
 #include <napi.h>
+#include <winuser.h>
 #pragma comment(lib, "user32.lib")
+
+void DpiAwareness(const Napi::CallbackInfo& info){
+  Napi::Env env = info.Env();
+  int length = info.Length();
+  
+  if (length != 1 || !info[0].IsBoolean()) {
+    Napi::TypeError::New(env, "Boolean expected").ThrowAsJavaScriptException();
+  }
+
+  Napi::Boolean legacy = info[0].As<Napi::Boolean>();
+  
+  if (legacy){
+    // Windows Vista, 7, 8, 8.1
+    SetProcessDPIAware();
+  } else {
+    // Windows 10
+    // https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setthreaddpiawarenesscontext
+    SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE);
+  }
+}
 
 Napi::Array GetResolutionList(const Napi::CallbackInfo& info){
   Napi::Env env = info.Env();
@@ -64,9 +84,7 @@ Napi::Object GetCurrentResolution(const Napi::CallbackInfo& info){
 /* NAPI Initialize add-on*/
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
-  
-  DpiAwareness();
-  
+  exports.Set("DpiAwareness", Napi::Function::New(env, DpiAwareness));
   exports.Set("GetResolutionList", Napi::Function::New(env, GetResolutionList));
   exports.Set("GetCurrentResolution", Napi::Function::New(env, GetCurrentResolution));
   return exports;

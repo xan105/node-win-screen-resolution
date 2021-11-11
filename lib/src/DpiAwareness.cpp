@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "winuser.h"
+#include "pch.h"
+#include <winuser.h>
 
 void DpiAwareness(){
   // Windows 10

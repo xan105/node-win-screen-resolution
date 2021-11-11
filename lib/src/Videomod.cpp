@@ -12,7 +12,7 @@ All rights reserved.
 */
 
 /////////////////////////////////  Includes  //////////////////////////////////
-#include "stdafx.h"
+#include "pch.h"
 #include "videomod.h"
 
 

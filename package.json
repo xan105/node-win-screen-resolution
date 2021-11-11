@@ -1,23 +1,20 @@
 {
   "name": "win-screen-resolution",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Get the current and all available screen resolution on Windows",
   "type": "module",
-  "main": "./lib/index.cjs",
-  "exports": {
-    "import": "./lib/esm.mjs",
-    "require": "./lib/index.cjs"
-  },
+  "exports": "./lib/esm.js",
+  "types": "./types/esm.d.ts",
   "os": [
     "win32"
   ],
   "engines": {
-    "node": ">=0.12"
+    "node": ">=16.0.0"
   },
   "scripts": {
     "build": "node-gyp rebuild",
     "clean": "node-gyp clean",
-    "lint": "npx eslint --ignore-path .gitignore ./**/*.{cjs,mjs}"
+    "lint": "npx eslint --ignore-path .gitignore ./**/*.{js,mjs}"
   },
   "keywords": [
     "screen",
@@ -41,11 +38,12 @@
   },
   "homepage": "https://github.com/xan105/node-win-screen-resolution#readme",
   "devDependencies": {
-    "eslint": "^7.30.0",
-    "node-gyp": "^8.1.0"
+    "eslint": "^8.1.0",
+    "node-gyp": "^8.4.0"
   },
   "dependencies": {
+    "@xan105/is": "^2.0.0",
     "bindings": "^1.5.0",
-    "node-addon-api": "^4.0.0"
+    "node-addon-api": "^4.2.0"
   }
 }

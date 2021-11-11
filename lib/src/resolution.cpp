@@ -22,14 +22,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#include <napi.h>
-
 /* NOTE: Your project need to include MFC either statically or dynamically.
 You will also need to have afxtempl.h in your precompiled header. */
-
-#include "stdafx.h"
+#include "pch.h"
 #include "videomod.h"
-#include "DpiAwareness.h"
+#include "dpiAwareness.h"
+#include <napi.h>
 #pragma comment(lib, "user32.lib")
 
 Napi::Array GetResolutionList(const Napi::CallbackInfo& info){

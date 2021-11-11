@@ -5,13 +5,10 @@ Example
 
 ```js
 
-const resolution = require("win-screen-resolution");
+import { current, list } from "win-screen-resolution";
 
-const current = resolution.current(); // {width: i, height: i}
-const available = resolution.list(); // [{width: i, height: i}, ... ]
-
-console.log(current); // { width: 1920, height: 1080 }
-console.log(available);
+console.log(current()); //{ width: 1920, height: 1080 }
+console.log(list());
 /*
 [
   { width: 1920, height: 1080 },
@@ -32,7 +29,6 @@ console.log(available);
   { width: 800, height: 600 }
 ]
 */
-
 ```
 
 Installation
@@ -40,7 +36,7 @@ Installation
 
 `npm install win-screen-resolution`
 
-You will need C/C++ build tools and Python ~2.7~ 3.x(node-gyp) to build this module.
+You will need C/C++ build tools and Python 3.x (node-gyp) to build this module.
 
 Note
 ====

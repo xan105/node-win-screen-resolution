@@ -36,7 +36,12 @@ Installation
 
 `npm install win-screen-resolution`
 
-You will need C/C++ build tools and Python 3.x (node-gyp) to build this module.
+You will need C/C++ build tools and Python 3.x (node-gyp) to build this module.<br />
+Prebuild available.
+
+Force compiling:
+
+`npm install win-screen-resolution --build-from-source`
 
 Note
 ====

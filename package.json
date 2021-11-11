@@ -13,8 +13,11 @@
   },
   "scripts": {
     "build": "node-gyp rebuild",
+    "prebuild": "prebuildify --target node@ --napi --platform win32 --arch x64",
     "clean": "node-gyp clean",
-    "lint": "npx eslint --ignore-path .gitignore ./**/*.{js,mjs}"
+    "lint": "npx eslint --ignore-path .gitignore ./**/*.{js,mjs}",
+    "test": "tap test/auto/* --no-coverage --no-coverage-report",
+    "install": "node-gyp-build"
   },
   "keywords": [
     "screen",
@@ -39,11 +42,13 @@
   "homepage": "https://github.com/xan105/node-win-screen-resolution#readme",
   "devDependencies": {
     "eslint": "^8.1.0",
-    "node-gyp": "^8.4.0"
+    "node-gyp": "^8.4.0",
+    "prebuildify": "^5.0.0",
+    "tap": "^15.0.10"
   },
   "dependencies": {
     "@xan105/is": "^2.0.0",
-    "bindings": "^1.5.0",
-    "node-addon-api": "^4.2.0"
+    "node-addon-api": "^4.2.0",
+    "node-gyp-build": "^4.3.0"
   }
 }

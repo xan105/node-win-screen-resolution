@@ -2,3 +2,4 @@
 build/
 test/
 .eslintrc.json
+.nyc_output/

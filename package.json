@@ -11,6 +11,7 @@
   "engines": {
     "node": ">=16.0.0"
   },
+  "gypfile": true,
   "scripts": {
     "build": "node-gyp rebuild",
     "prebuild": "prebuildify --target node@ --napi --platform win32 --arch x64",
@@ -31,7 +32,6 @@
     "url": "https://xan105.com/"
   },
   "license": "MIT",
-  "gypfile": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xan105/node-win-screen-resolution.git"

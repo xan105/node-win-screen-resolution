@@ -36,14 +36,26 @@ Installation
 
 `npm install win-screen-resolution`
 
-You will need C/C++ build tools and Python 3.x (node-gyp) to build this module.<br />
-Prebuild available.
-
 Force compiling:
-
 `npm install win-screen-resolution --build-from-source`
 
-Note
-====
+You will need C/C++ build tools and Python 3.x (node-gyp) to build this module.<br />
+
+API
+===
+
+⚠️ This module is only available as an ECMAScript module (ESM) starting with version 2.0.0.<br />
+Previous version(s) are CommonJS (CJS) with an ESM wrapper.
+
+## Named export
+
+#### `list(): obj[]`
+
+List all available screen resolution.
 Available screen resolution below 800x600 are ignored because of Windows 10 min display resolution requirement.
+HighDPI supported (DPI Aware).
+
+#### `current(): obj`
+
+Get current (main) screen resolution.
 HighDPI supported (DPI Aware).

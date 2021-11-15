@@ -14,11 +14,10 @@
   "gypfile": true,
   "scripts": {
     "build": "node-gyp rebuild",
-    "prebuild": "prebuildify --target node@ --napi --platform win32 --arch x64",
     "clean": "node-gyp clean",
     "lint": "npx eslint --ignore-path .gitignore ./**/*.{js,mjs}",
     "test": "tap test/auto/* --no-coverage --no-coverage-report",
-    "install": "node-gyp-build"
+    "install": "node-gyp-load"
   },
   "keywords": [
     "screen",
@@ -43,12 +42,11 @@
   "devDependencies": {
     "eslint": "^8.1.0",
     "node-gyp": "^8.4.0",
-    "prebuildify": "^5.0.0",
     "tap": "^15.0.10"
   },
   "dependencies": {
-    "@xan105/is": "^2.0.0",
+    "@xan105/fs": "^2.0.0",
     "node-addon-api": "^4.2.0",
-    "node-gyp-build": "^4.3.0"
+    "node-gyp-load": "github:xan105/node-gyp-load"
   }
 }

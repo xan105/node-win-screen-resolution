@@ -47,6 +47,6 @@
   "dependencies": {
     "@xan105/fs": "^2.0.0",
     "node-addon-api": "^4.2.0",
-    "node-gyp-load": "github:xan105/node-gyp-load"
+    "node-gyp-load": "^0.0.1"
   }
 }

@@ -45,7 +45,6 @@
     "tap": "^15.0.10"
   },
   "dependencies": {
-    "@xan105/fs": "^2.0.0",
     "node-addon-api": "^4.2.0",
     "node-gyp-load": "^0.0.1"
   }

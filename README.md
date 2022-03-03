@@ -1,3 +1,6 @@
+About
+=====
+
 A NAPI Native C++ Addons to get the current and all available screen resolution on Windows.
 
 Example
@@ -34,10 +37,14 @@ console.log(list());
 Installation
 ============
 
-`npm install win-screen-resolution`
+```
+npm install win-screen-resolution
+```
 
 Force compiling:
-`npm install win-screen-resolution --build-from-source`
+```
+npm install win-screen-resolution --build-from-source
+```
 
 You will need C/C++ build tools and Python 3.x (node-gyp) to build this module.<br />
 

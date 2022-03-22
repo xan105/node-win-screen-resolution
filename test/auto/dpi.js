@@ -1,8 +1,8 @@
 import t from 'tap';
-import { current } from "../../lib/esm.js";
+import { current } from "../../lib/index.js";
 import { setDPI } from "../util/setDPI.js";
 import { setTimeout } from "node:timers/promises";
-import { isWin10orGreater } from "@xan105/is/win";
+import { isWin10orGreater } from "@xan105/is";
 
 const monitor = 1; //Change to your setup
 

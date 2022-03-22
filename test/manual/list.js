@@ -1,2 +1,2 @@
-import { list } from "../../lib/esm.js";
+import { list } from "../../lib/index.js";
 console.log(list());

@@ -1,9 +1,14 @@
 {
   "name": "win-screen-resolution",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "Get the current and all available screen resolution on Windows",
   "type": "module",
-  "exports": "./lib/index.js",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
   "types": "./types/index.d.ts",
   "os": [
     "win32"
@@ -13,11 +18,13 @@
   },
   "gypfile": true,
   "scripts": {
+    "install": "node-gyp-load",
     "build": "node-gyp rebuild",
     "clean": "node-gyp clean",
-    "lint": "npx eslint --ignore-path .gitignore \"./**/*.{js,mjs}\"",
-    "test": "tap test/auto/* --no-coverage --no-coverage-report",
-    "install": "node-gyp-load"
+    "lint": "eslint \"./lib/**/*.{js,mjs}\" \"./types/**/*.d.ts\"",
+    "test": "tap \"./test/auto/**/*.js\" --no-coverage --no-coverage-report",
+    "check": "tsc --noemit --checkjs",
+    "declare": "tsc --declaration --emitDeclarationOnly --outDir \"./types\""
   },
   "keywords": [
     "screen",
@@ -39,14 +46,34 @@
     "url": "https://github.com/xan105/node-win-screen-resolution/issues"
   },
   "homepage": "https://github.com/xan105/node-win-screen-resolution#readme",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/xan105"
+    },
+    {
+      "type": "paypal",
+      "url": "https://www.paypal.me/xan105"
+    },
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/xan105"
+    }
+  ],
   "devDependencies": {
-    "eslint": "^8.11.0",
-    "node-gyp": "^9.0.0",
-    "tap": "^16.0.0"
+    "@types/node": "^18.11.17",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
+    "@xan105/fs": "^2.1.0",
+    "eslint": "^8.30.0",
+    "node-gyp": "^9.3.1",
+    "tap": "^16.3.2",
+    "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@xan105/is": "^2.4.0",
-    "node-addon-api": "^4.3.0",
-    "node-gyp-load": "^0.0.3"
+    "@xan105/error": "^1.4.3",
+    "@xan105/is": "^2.7.0",
+    "node-addon-api": "^5.0.0",
+    "node-gyp-load": "^0.0.4"
   }
 }

@@ -1,7 +1,8 @@
-declare interface IRes{
+declare interface Resolution{
   width: number,
   height: number
 }
 
-export function list(): IRes[];
-export function current(): IRes;
+declare function _GetCurrentResolution(): Resolution;
+export function list(): Resolution[];
+export { _GetCurrentResolution as current };

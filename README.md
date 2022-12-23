@@ -47,6 +47,7 @@ npm install win-screen-resolution --build-from-source
 ```
 
 You will need C/C++ build tools and Python 3.x (node-gyp) to build this module.<br />
+🚀 x64 prebuilt binary provided.
 
 API
 ===
@@ -56,13 +57,28 @@ Previous version(s) are CommonJS (CJS) with an ESM wrapper.
 
 ## Named export
 
-#### `list(): obj[]`
+#### `list(): object[]`
 
-List all available screen resolution.
-Available screen resolution below 800x600 are ignored because of Windows 10 min display resolution requirement.
-HighDPI supported (DPI Aware).
+List all available screen resolution. HighDPI supported (DPI Aware).
 
-#### `current(): obj`
+```ts
+[
+  {
+    width: number,
+    height: number
+  }
+]
+```
 
-Get current (main) screen resolution.
-HighDPI supported (DPI Aware).
+NB: Available screen resolution below 800x600 are ignored because of Windows 10 min display resolution requirement.
+
+#### `current(): object`
+
+Get current screen resolution (primary display). HighDPI supported (DPI Aware).
+
+```ts
+{
+  width: number,
+  height: number
+}
+```

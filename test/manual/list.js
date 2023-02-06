@@ -1,2 +1,2 @@
-import { list } from "../../lib/index.js";
-console.log(list());
+import { getAvailableResolution } from "../../lib/index.js";
+console.log(getAvailableResolution());

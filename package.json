@@ -1,6 +1,6 @@
 {
   "name": "win-screen-resolution",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Get the current and all available screen resolution on Windows",
   "type": "module",
   "exports": {
@@ -10,9 +10,6 @@
     }
   },
   "types": "./types/index.d.ts",
-  "os": [
-    "win32"
-  ],
   "engines": {
     "node": ">=16.0.0"
   },
@@ -61,19 +58,19 @@
     }
   ],
   "devDependencies": {
-    "@types/node": "^18.11.17",
-    "@typescript-eslint/eslint-plugin": "^5.47.0",
-    "@typescript-eslint/parser": "^5.47.0",
+    "@types/node": "^18.11.19",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
     "@xan105/fs": "^2.1.0",
-    "eslint": "^8.30.0",
+    "eslint": "^8.33.0",
     "node-gyp": "^9.3.1",
-    "tap": "^16.3.2",
-    "typescript": "^4.9.4"
+    "tap": "^16.3.4",
+    "typescript": "^4.9.5"
   },
   "dependencies": {
     "@xan105/error": "^1.4.3",
-    "@xan105/is": "^2.7.0",
-    "node-addon-api": "^5.0.0",
+    "@xan105/is": "^2.7.1",
+    "node-addon-api": "^5.1.0",
     "node-gyp-load": "^0.0.4"
   }
 }

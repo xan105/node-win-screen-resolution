@@ -1,7 +1,7 @@
 About
 =====
 
-A NAPI Native C++ Addons to get the current and all available screen resolution on Windows (DPI Aware).
+A NAPI Native C++ addon to get the current and all available screen resolution on Windows (DPI Aware).
 
 Example
 =======
@@ -58,13 +58,14 @@ Installation
 npm install win-screen-resolution
 ```
 
+🚀 x64 prebuilt binary provided.
+
 Force compiling:
 ```
 npm install win-screen-resolution --build-from-source
 ```
 
-You will need C/C++ build tools and Python 3.x (node-gyp) to build this module.<br />
-🚀 x64 prebuilt binary provided.
+You will need C/C++ build tools and Python 3.x (node-gyp) to build this module.
 
 API
 ===
@@ -72,7 +73,7 @@ API
 ⚠️ This module is only available as an ECMAScript module (ESM) starting with version 2.0.0.<br />
 Previous version(s) are CommonJS (CJS) with an ESM wrapper.
 
-💡 **DPI Awareness**
+**DPI Awareness**
 
 The following exports are DPI aware meaning that their results won't change with different DPI scalor factor.
 Please note that support for DPI awareness on Windows 7/8 was removed in 3.x. If you need it use previous version.

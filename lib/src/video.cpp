@@ -4,8 +4,8 @@ This source code is licensed under the MIT License
 found in the LICENSE file in the root directory of this source tree.
 */
 
-/* NOTE: Your project need to include MFC either statically or dynamically.
-You will also need to have afxtempl.h in your precompiled header. */
+/* NOTE: MFC must be included either statically or dynamically.
+"afxtempl.h" needs to be in your precompiled header. */
 #include "pch.h"
 #ifndef __AFXTEMPL_H__
 #include <afxtempl.h>

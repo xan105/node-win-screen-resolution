@@ -2,7 +2,7 @@
   "targets": 
     [
       {
-        "target_name": "video",
+        "target_name": "video.napi",
         "conditions": [
           ["OS=='win'", {
             "sources": [

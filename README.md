@@ -58,7 +58,7 @@ Installation
 npm install win-screen-resolution
 ```
 
-🚀 x64 and x86 prebuilt binary provided.
+🚀 x86, x64 and arm64 prebuilt binary provided.
 
 Force compiling:
 ```

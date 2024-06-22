@@ -1,9 +1,8 @@
 import { promisify } from "node:util";
 import { exec } from "node:child_process";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { 
-  asIntegerPositiveOrZero, 
+  asIntegerPositive, 
   asIntegerWithinRange 
 } from "@xan105/is/opt";
 import { shouldObj } from "@xan105/is/assert";
@@ -16,12 +15,12 @@ async function setDPI(option = {}){
   
   const options = {
     level: asIntegerWithinRange(option.level, 100, 200) ?? 100, //in % scale
-    monitor: asIntegerPositiveOrZero(option.monitor) ?? 0
+    monitor: asIntegerPositive(option.monitor) ?? 1
   };
 
   console.warn(`Changing monitor #${options.monitor} to ${options.level}% dpi...`);
   
-  const bin = join(dirname(fileURLToPath(import.meta.url)), "bin/SetDpi.exe");
+  const bin = join(import.meta.dirname, "bin/SetDpi.exe");
   
   const expected = "eca21767ac80bc5d40ab8e2c52589e7b5f050aa7daef774fa9abb61aefba58ce";
   const hash = await hashFile(bin,"sha256");

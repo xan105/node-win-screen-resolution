@@ -1,20 +1,20 @@
-import t from 'tap';
+import test from "node:test";
+import assert from "node:assert/strict";
 import { getCurrentResolution } from "../../lib/index.js";
 import { setDPI } from "../util/setDPI.js";
 import { setTimeout } from "node:timers/promises";
 
-const monitor = 1; //Change to your setup
-
-t.test("dpi awareness", async t => {
-  const start = getCurrentResolution();
-  await setDPI({level: 125, monitor: monitor});
-  await setTimeout(3 * 1000);
-  const afterChange = getCurrentResolution();
-  t.same(afterChange,start,"reported resolution shouldn't change");
-  await setDPI({monitor: monitor});
-  await setTimeout(3 * 1000);
-  const reset = getCurrentResolution();
-  t.same(reset,start,"reported resolution shouldn't change");
-  t.end();
+test("DPI awareness", async() => {
+  await test(" reported resolution shouldn't change", async() => {
+    const resolution = getCurrentResolution();
+    
+    for (const level of [ 125, 100 ])
+    {
+      await setDPI({ level });
+      await setTimeout(3 * 1000);
+      const current = getCurrentResolution();
+      assert.deepEqual(current, resolution);
+    }
+  });
 });
 

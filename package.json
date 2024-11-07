@@ -28,7 +28,7 @@
     "build:arm64": "node-gyp rebuild --arch=arm64",
     "clean": "node-gyp clean",
     "lint": "eslint \"./lib/**/*.{js,mjs}\" \"./types/**/*.d.ts\"",
-    "test": "node --test test/auto/",
+    "test": "node --test test/auto/*.js",
     "check": "tsc --noemit --checkjs",
     "declare": "tsc --declaration --emitDeclarationOnly --outDir \"./types\""
   },

@@ -41,11 +41,22 @@ Napi::Object GetCurrentDisplayMode(const Napi::CallbackInfo& info){
   mode.Set("height", GetDeviceCaps(hdc, VERTRES));
   mode.Set("hz", GetDeviceCaps(hdc, VREFRESH));
   mode.Set("color", GetDeviceCaps(hdc, BITSPIXEL));
-
-  double scale = (GetDpiForSystem() / 96.0) * 100.0;
-  mode.Set("dpi", static_cast<int>(scale));
-
+  
   ::ReleaseDC(NULL, hdc);
+
+  Dpi dpi = { 96, 96 }; // Default DPI
+
+  HMONITOR hMonitor = MonitorFromPoint({0,0}, MONITOR_DEFAULTTOPRIMARY);
+  GetDpiForMonitor(hMonitor, MDT_EFFECTIVE_DPI, &dpi.x, &dpi.y);
+
+  if(dpi.x == dpi.y){ //NB: Microsoft states that dpiX == dpiY and just to pick one
+    mode.Set("scale", static_cast<UINT>((dpi.x / 96.0) * 100.0));
+  } else { //But better safe than sorry
+    Napi::Object scale = Napi::Object::New(env);
+    scale.Set("x", static_cast<UINT>((dpi.x / 96.0) * 100.0));
+    scale.Set("y", static_cast<UINT>((dpi.y / 96.0) * 100.0));
+    mode.Set("scale", scale);
+  }
 
   return mode;
 }
@@ -57,7 +68,6 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
   SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE); //>=Win10
   exports.Set("getAvailableDisplayMode", Napi::Function::New(env, GetAvailableDisplayMode));
   exports.Set("getCurrentDisplayMode", Napi::Function::New(env, GetCurrentDisplayMode));
-  
   exports.Set("getActiveDisplays", Napi::Function::New(env, GetActiveDisplays));
   exports.Set("changePrimaryDisplay", Napi::Function::New(env, ChangePrimaryDisplay));
   

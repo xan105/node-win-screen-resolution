@@ -8,20 +8,20 @@ found in the LICENSE file in the root directory of this source tree.
 
 void ListDisplays(std::vector<Display>& displays) {
     
-    DISPLAY_DEVICEW displayDevice = { 0 };
+    DISPLAY_DEVICEW displayDevice = {};
     displayDevice.cb = sizeof(DISPLAY_DEVICEW);
     int deviceIndex = 0;
 
     while (EnumDisplayDevicesW(NULL, deviceIndex, &displayDevice, 0)) {
         if (displayDevice.StateFlags & DISPLAY_DEVICE_ATTACHED_TO_DESKTOP) {
-            Display display;
+            Display display = {};
             
             display.name = displayDevice.DeviceName;
             display.adapter = displayDevice.DeviceString;
             display.primary = displayDevice.StateFlags & DISPLAY_DEVICE_PRIMARY_DEVICE;
 
             // Now query for the first monitor associated with this adapter
-            DISPLAY_DEVICEW monitorDevice = { 0 };
+            DISPLAY_DEVICEW monitorDevice = {};
             monitorDevice.cb = sizeof(DISPLAY_DEVICEW);
             DWORD monitorIndex = 0;
             if (EnumDisplayDevicesW(displayDevice.DeviceName, monitorIndex, &monitorDevice, 0)) {
@@ -38,11 +38,11 @@ void ListDisplays(std::vector<Display>& displays) {
                 POINT offset = { display.devMode.dmPosition.x, display.devMode.dmPosition.y };
                 HMONITOR hMonitor = MonitorFromPoint(offset, MONITOR_DEFAULTTONEAREST);
                 
-                MONITORINFOEXW monitorInfo = { 0 };
+                MONITORINFOEXW monitorInfo = {};
                 monitorInfo.cbSize = sizeof(monitorInfo);
                 if (GetMonitorInfoW(hMonitor, &monitorInfo)) {
                   if (monitorInfo.szDevice == display.name){ //Make sure it's the correct handle
-                    //Get the DPI scale factor
+                    //Get DPI
                     GetDpiForMonitor(hMonitor, MDT_EFFECTIVE_DPI, &dpi.x, &dpi.y);
                   } 
                 }

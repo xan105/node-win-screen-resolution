@@ -36,7 +36,7 @@ import {
 } from "win-screen-resolution";
 
 console.log(getCurrentDisplayMode()); 
-//{ width: 1920, height: 1080, hz: 60, color: 32 }
+//{ width: 1920, height: 1080, hz: 60, scale: 100, color: 32 }
 
 console.log(getAvailableDisplayMode());
 /*
@@ -48,7 +48,47 @@ console.log(getAvailableDisplayMode());
   ...
 ]
 */
+```
 
+Multi-monitor
+
+```js
+import { 
+  getActiveDisplays, 
+  setPrimaryDisplay 
+} from "win-screen-resolution";
+
+const displays = getActiveDisplays();
+console.log(displays);
+/*
+[{
+    id: '\\\\.\\DISPLAY1',
+    adapter: 'NVIDIA GeForce GTX 1060 6GB',
+    monitor: 'LG ULTRAGEAR(DisplayPort)',
+    primary: true,
+    width: 2560,
+    height: 1440,
+    hz: 165,
+    scale: 100,
+    offset: { x: 0, y: 0 }
+  },
+  {
+    id: '\\\\.\\DISPLAY5',
+    adapter: 'Intel(R) HD Graphics 530',
+    monitor: 'Dell U2417H (HDMI)',
+    primary: false,
+    width: 1920,
+    height: 1080,
+    hz: 59,
+    scale: 100,
+    offset: { x: 2560, y: 0 }
+  }]
+*/
+
+//Change primary display
+setPrimaryDisplay(displays[1].id); //by identifier
+//OR
+setPrimaryDisplay(1); //by index
 ```
 
 Installation
@@ -80,7 +120,7 @@ Please note that support for DPI awareness on Windows 7/8 was removed in 3.x. If
 
 ## Named export
 
-#### `getCurrentDisplayMode(): object`
+### `getCurrentDisplayMode(): object`
 
 Get the current **primary display** video mode as follows:
 
@@ -90,14 +130,15 @@ Get the current **primary display** video mode as follows:
   height: number, //Vertical resolution
   hz: number, //Refresh rate
   color: number //Color depth in bits/pixel
+  scale: number //DPI scale factor in %
 }
 ```
 
 ❌ Will throw on unexpected error.
 
-#### `getAvailableDisplayMode(): object[]`
+### `getAvailableDisplayMode(): object[]`
 
-Get all available display video mode from the current display device on which the calling thread is running as follows: 
+Get all available video modes from the **primary display** as follows: 
 
 ```ts
 [
@@ -112,9 +153,7 @@ Get all available display video mode from the current display device on which th
 
 ❌ Will throw on unexpected error.
 
-#### `getCurrentResolution(): object`
-
-alias: `current()` _backward compatibility_
+### `getCurrentResolution(): object`
 
 Get the current **primary display** screen resolution as follows:
 
@@ -129,11 +168,9 @@ This is a short hand to `getCurrentDisplayMode()`
 
 ❌ Will throw on unexpected error.
 
-#### `getAvailableResolution(): object[]`
+### `getAvailableResolution(): object[]`
 
-alias: `list()` _backward compatibility_
-
-Get all available screen resolution from the current display device on which the calling thread is running sorted _from highest to lowest_ as follows:
+Get all available screen resolutions from the **primary display** as follows sorted _from highest to lowest_ as follows:
 
 ```ts
 [
@@ -144,8 +181,45 @@ Get all available screen resolution from the current display device on which the
 ]
 ```
 
-💡 Available screen resolution below 800x600 are ignored because of Windows 10 min display resolution requirement.
+💡 Available screen resolution below _800x600_ are ignored because of Windows 10 min display resolution requirement.
 
 This is a short hand to `getAvailableDisplayMode()`
 
+❌ Will throw on unexpected error.
+
+### `getActiveDisplays(): object[]`
+
+List the current settings of every display devices attached to the desktop as follows:
+
+```ts
+[
+  {
+    id: string, //Device id
+    adapter: string, //Adapter name
+    monitor: string, //Monitor name
+    primary: boolean,
+    width: number, //Pixels X
+    height: number, //Pixels Y
+    hz: number, //Frequency
+    scale: number, //DPI scale factor
+    offset: { x: number, y: number } //Position in the [Windows virtual screen](https://learn.microsoft.com/en-us/windows/win32/gdi/the-virtual-screen)
+  }
+]
+```
+
+❌ Will throw on unexpected error.
+
+### `setPrimaryDisplay(display: string|number): void`
+
+Switch the primary display to specified display.
+
+If display is a `string` then the device id is assumed;<br />
+If it's a `number` then the array index is used.
+
+Call `getActiveDisplays()` to list available displays.
+
+⚠️ Please be carefull that the list of displays might have changed between the time you called `getActiveDisplays()` and `setPrimaryDisplay()`.
+Depending on your use case you might be better of using the device id to avoid this problem.
+
+❌ Will throw on error.<br />
 ❌ Will throw on unexpected error.

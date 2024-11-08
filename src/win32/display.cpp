@@ -166,7 +166,7 @@ Napi::Value ChangePrimaryDisplay(const Napi::CallbackInfo& info){
     targetIndex = info[0].As<Napi::Number>().Int32Value();
   }
   
-  if (targetIndex < 0 || targetIndex >= displays.size()) {
+  if (targetIndex < 0 || targetIndex >= (int)displays.size()) {
     Napi::TypeError::New(env, "Target display not found !").ThrowAsJavaScriptException();
     return env.Undefined();
   }

@@ -107,6 +107,8 @@ npm install win-screen-resolution --build-from-source
 
 You will need C/C++ build tools and Python 3.x (node-gyp) to build this module.
 
+⚠️ This package doesn't have any installation restrictions in its package.json file to facilitate multi-platform development; however, it is at the moment only designed to work on Windows.
+
 API
 ===
 
@@ -129,12 +131,12 @@ Get the current **primary display** video mode as follows:
   width: number, //Horizontal resolution
   height: number, //Vertical resolution
   hz: number, //Refresh rate
-  color: number //Color depth in bits/pixel
+  color: number, //Color depth in bits/pixel
   scale: number //DPI scale factor in %
 }
 ```
 
-❌ Will throw on unexpected error.
+❌ Will throw if not running Win10 or greater.
 
 ### `getAvailableDisplayMode(): object[]`
 
@@ -151,7 +153,7 @@ Get all available video modes from the **primary display** as follows:
 ]
 ```
 
-❌ Will throw on unexpected error.
+❌ Will throw if not running Win10 or greater.
 
 ### `getCurrentResolution(): object`
 
@@ -164,9 +166,9 @@ Get the current **primary display** screen resolution as follows:
 }
 ```
 
-This is a short hand to `getCurrentDisplayMode()`
+This is a short hand to `getCurrentDisplayMode()`.
 
-❌ Will throw on unexpected error.
+❌ Will throw if not running Win10 or greater.
 
 ### `getAvailableResolution(): object[]`
 
@@ -181,11 +183,11 @@ Get all available screen resolutions from the **primary display** as follows sor
 ]
 ```
 
+This is a short hand to `getAvailableDisplayMode()`.
+
 💡 Available screen resolution below _800x600_ are ignored because of Windows 10 min display resolution requirement.
 
-This is a short hand to `getAvailableDisplayMode()`
-
-❌ Will throw on unexpected error.
+❌ Will throw if not running Win10 or greater.
 
 ### `getActiveDisplays(): object[]`
 
@@ -202,12 +204,14 @@ List the current settings of every display devices attached to the desktop as fo
     height: number, //Pixels Y
     hz: number, //Frequency
     scale: number, //DPI scale factor
-    offset: { x: number, y: number } //Position in the [Windows virtual screen](https://learn.microsoft.com/en-us/windows/win32/gdi/the-virtual-screen)
+    offset: { x: number, y: number } //Position in the Windows virtual screen¹
   }
 ]
 ```
 
-❌ Will throw on unexpected error.
+¹[Windows virtual screen](https://learn.microsoft.com/en-us/windows/win32/gdi/the-virtual-screen)
+
+❌ Will throw if not running Win10 or greater.
 
 ### `setPrimaryDisplay(display: string|number): void`
 
@@ -222,4 +226,4 @@ Call `getActiveDisplays()` to list available displays.
 Depending on your use case you might be better of using the device id to avoid this problem.
 
 ❌ Will throw on error.<br />
-❌ Will throw on unexpected error.
+❌ Will throw if not running Win10 or greater.

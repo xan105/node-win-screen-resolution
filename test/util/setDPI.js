@@ -14,11 +14,11 @@ async function setDPI(option = {}){
   shouldObj(option);
   
   const options = {
-    level: asIntegerWithinRange(option.level, 100, 200) ?? 100, //in % scale
+    scale: asIntegerWithinRange(option.scale, 100, 200) ?? 100, //in % scale
     monitor: asIntegerPositive(option.monitor) ?? 1
   };
 
-  console.warn(`Changing monitor #${options.monitor} to ${options.level}% dpi...`);
+  console.warn(`Changing monitor #${options.monitor} to ${options.scale}% dpi...`);
   
   const bin = join(import.meta.dirname, "bin/SetDpi.exe");
   
@@ -28,7 +28,7 @@ async function setDPI(option = {}){
     throw new Failure("Hash mismatch ! vendor binary was altered ?", { code: 0, info: { expected, hash } });
   
   const [cmd, err] = await attempt(promisify(exec),[
-    `${bin} ${options.monitor} ${options.level}`, 
+    `${bin} ${options.monitor} ${options.scale}`, 
     { windowsHide: true }
   ]);
   if (err || cmd.stderr) throw new Failure(err?.stderr || cmd.stderr, 0);

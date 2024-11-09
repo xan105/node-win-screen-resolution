@@ -8,7 +8,9 @@
         "conditions": [
           ["OS=='win'", {
             "sources": [
-              "lib/src/win32/video.cpp"
+              "src/win32/video.cpp",
+              "src/win32/display.cpp",
+              "src/win32/string.cpp"
             ],
             "msvs_settings": {
               "VCCLCompilerTool": {
@@ -16,8 +18,7 @@
                 "AdditionalOptions": []
               },
               "VCLinkerTool": {
-                "AdditionalDependencies": ["nafxcw.lib;libcmt.lib"],
-                "IgnoreDefaultLibraryNames": "nafxcw.lib;libcmt.lib",
+                "AdditionalDependencies": ["Shcore.lib"],
                 "AdditionalOptions": []
               },
              }

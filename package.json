@@ -12,13 +12,14 @@
   "types": "./types/index.d.ts",
   "files": [
     "/lib",
+    "/src",
     "/prebuilds",
     "/types",
     "/binding.gyp"
   ],
   "engines": {
-    "node": ">=20.12.2",
-    "npm": "^10.5.0"
+    "node": ">=22.11.0",
+    "npm": "^10.9.0"
   },
   "gypfile": true,
   "scripts": {
@@ -27,16 +28,17 @@
     "build:x64": "node-gyp rebuild --arch=x64",
     "build:arm64": "node-gyp rebuild --arch=arm64",
     "clean": "node-gyp clean",
-    "lint": "eslint \"./lib/**/*.{js,mjs}\" \"./types/**/*.d.ts\"",
-    "test": "node --test test/auto/",
-    "check": "tsc --noemit --checkjs",
-    "declare": "tsc --declaration --emitDeclarationOnly --outDir \"./types\""
+    "test": "node --test test/auto/*.js",
+    "lint": "biome lint",
+    "declare": "tsc --emitDeclarationOnly"
   },
   "keywords": [
     "screen",
     "resolution",
     "windows",
-    "DPI"
+    "DPI",
+    "display",
+    "primary"
   ],
   "author": {
     "name": "Anthony Beaumont",
@@ -67,13 +69,10 @@
     }
   ],
   "devDependencies": {
-    "@eslint/js": "^9.5.0",
-    "@types/node": "^20.14.2",
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^22.9.0",
     "@xan105/fs": "^2.2.1",
-    "eslint": "^9.5.0",
-    "globals": "^15.5.0",
-    "typescript": "5.4",
-    "typescript-eslint": "^8.0.0-alpha.30"
+    "typescript": "^5.6.3"
   },
   "dependencies": {
     "@xan105/error": "^1.7.1",

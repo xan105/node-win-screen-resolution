@@ -9,5 +9,5 @@ const rl = createInterface({ input: stdin, output: stdout });
 const index = await rl.question("New primary display index: ");
 rl.close();
 
-setPrimaryDisplay(+index);
-
+setPrimaryDisplay(displays[+index].id);
+//setPrimaryDisplay(+index);

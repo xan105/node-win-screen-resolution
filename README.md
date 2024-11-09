@@ -132,7 +132,7 @@ Get the current **primary display** video mode as follows:
   height: number, //Vertical resolution
   hz: number, //Refresh rate
   color: number, //Color depth in bits/pixel
-  scale: number //DPI scale factor in %
+  scale: number|object //DPI scale factor in %
 }
 ```
 
@@ -203,7 +203,7 @@ List the current settings of every display devices attached to the desktop as fo
     width: number, //Pixels X
     height: number, //Pixels Y
     hz: number, //Frequency
-    scale: number, //DPI scale factor
+    scale: number|object, //DPI scale factor
     offset: { x: number, y: number } //Position in the Windows virtual screen¹
   }
 ]

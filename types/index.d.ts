@@ -3,12 +3,17 @@ declare interface Resolution{
   height: number
 }
 
+declare interface Scale{
+  x: number,
+  y: number
+}
+
 declare interface VideoMode{
   width: number,
   height: number,
   hz: number,
   color: number,
-  scale?: number
+  scale?: number|Scale
 }
 
 declare interface DisplayInfo{
@@ -19,7 +24,7 @@ declare interface DisplayInfo{
   width: number,
   height: number,
   hz: number,
-  scale: number,
+  scale: number|Scale,
   offset: { x: number, y: number }  
 }
 

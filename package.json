@@ -1,6 +1,6 @@
 {
   "name": "win-screen-resolution",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "description": "Get the current and all available screen resolution on Windows",
   "type": "module",
   "exports": {
@@ -27,6 +27,7 @@
     "build:x86": "node-gyp rebuild --arch=ia32",
     "build:x64": "node-gyp rebuild --arch=x64",
     "build:arm64": "node-gyp rebuild --arch=arm64",
+    "sri": "addons-sri --algo sha384",
     "clean": "node-gyp clean",
     "test": "node --test test/auto/*.js",
     "lint": "biome lint",
@@ -75,7 +76,7 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@xan105/addons": "^2.0.0",
+    "@xan105/addons": "^2.1.1",
     "@xan105/error": "^1.7.1",
     "@xan105/is": "^2.10.1",
     "node-addon-api": "^8.2.2"
